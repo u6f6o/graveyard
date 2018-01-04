@@ -1,6 +1,7 @@
 package com.u6f6o.graveyard
 
 import io.netty.channel.EventLoopGroup
+import io.netty.channel.ServerChannel
 import io.netty.channel.epoll.Epoll
 import io.netty.channel.epoll.EpollEventLoopGroup
 import io.netty.channel.epoll.EpollServerSocketChannel
@@ -10,7 +11,7 @@ import io.netty.channel.kqueue.KQueueServerSocketChannel
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.nio.NioServerSocketChannel
 
-class ServerTransportType private constructor(val bossgroup: EventLoopGroup, val workerGroup: EventLoopGroup, val channelClazz: Class<*>) {
+class ServerTransportType private constructor(val bossgroup: EventLoopGroup, val workerGroup: EventLoopGroup, val channelClazz: Class<out ServerChannel>) {
     companion object {
         fun create(workerThreads: Int) : ServerTransportType {
             return when {
