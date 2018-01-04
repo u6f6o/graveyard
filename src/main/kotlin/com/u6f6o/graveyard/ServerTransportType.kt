@@ -11,7 +11,11 @@ import io.netty.channel.kqueue.KQueueServerSocketChannel
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.nio.NioServerSocketChannel
 
-class ServerTransportType private constructor(val bossgroup: EventLoopGroup, val workerGroup: EventLoopGroup, val channelClazz: Class<out ServerChannel>) {
+class ServerTransportType private constructor(
+        val bossgroup: EventLoopGroup,
+        val workerGroup: EventLoopGroup,
+        val channelClazz: Class<out ServerChannel>) {
+
     companion object {
         fun create(workerThreads: Int) : ServerTransportType {
             return when {
