@@ -17,7 +17,7 @@ class ServerTransportType private constructor(
         val channelClazz: Class<out ServerChannel>) {
 
     companion object {
-        fun create(workerThreads: Int) : ServerTransportType {
+        fun initialize(workerThreads: Int) : ServerTransportType {
             return when {
                 Epoll.isAvailable() -> withEpoll(workerThreads)
                 KQueue.isAvailable() -> withKQueue(workerThreads)

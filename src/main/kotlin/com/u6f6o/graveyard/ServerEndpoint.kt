@@ -9,6 +9,6 @@ class ServerEndpoint(port: Int) {
         val bossGroup = NioEventLoopGroup()
         val workerGroup = NioEventLoopGroup();
 
-        ServerTransportType.create(10)
+        ServerTransportType.initialize(10)
     }
 }
