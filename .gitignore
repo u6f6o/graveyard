@@ -1,3 +1,7 @@
+.*
+*.iml
+build/
+
 # Compiled class file
 *.class
 
