@@ -27,23 +27,23 @@ class ServerTransportType private constructor(
 
         private fun withEpoll(workerThreads: Int) =
                 ServerTransportType(
-                        bossgroup = EpollEventLoopGroup(1),
-                        workerGroup = EpollEventLoopGroup(workerThreads),
-                        channelClazz = EpollServerSocketChannel::class.java
+                        EpollEventLoopGroup(1),
+                        EpollEventLoopGroup(workerThreads),
+                        EpollServerSocketChannel::class.java
                 )
 
         private fun withKQueue(workerThreads: Int) =
                 ServerTransportType(
-                        bossgroup = KQueueEventLoopGroup(1),
-                        workerGroup = KQueueEventLoopGroup(workerThreads),
-                        channelClazz = KQueueServerSocketChannel::class.java
+                        KQueueEventLoopGroup(1),
+                        KQueueEventLoopGroup(workerThreads),
+                        KQueueServerSocketChannel::class.java
                 )
 
         private fun withNIO(workerThreads: Int) =
                 ServerTransportType(
-                        bossgroup = NioEventLoopGroup(1),
-                        workerGroup = NioEventLoopGroup(workerThreads),
-                        channelClazz = NioServerSocketChannel::class.java
+                        NioEventLoopGroup(1),
+                        NioEventLoopGroup(workerThreads),
+                        NioServerSocketChannel::class.java
                 )
     }
 }
