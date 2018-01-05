@@ -1,4 +1,4 @@
-package com.u6f6o.graveyard
+package com.u6f6o.graveyard.server
 
 import io.netty.channel.EventLoopGroup
 import io.netty.channel.ServerChannel
