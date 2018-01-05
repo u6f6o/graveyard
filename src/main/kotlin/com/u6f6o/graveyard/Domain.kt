@@ -2,7 +2,7 @@ package com.u6f6o.graveyard
 
 import java.time.LocalDate
 
-interface Response {}
+interface Response
 
 data class MovieQuery(val id: Int)
 data class ActorQuery(val id: Int)
