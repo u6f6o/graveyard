@@ -20,7 +20,6 @@ class RequestDispatcher : ChannelInboundHandlerAdapter() {
 
             when {
                 path.startsWith(Domain.Movies) -> dispatchMovieQuery(ctx,  decoder)
-                path.startsWith(Domain.Series) -> dispatchSeriesQuery(ctx, decoder)
                 path.startsWith(Domain.Actors) -> dispatchActorQuery(ctx, decoder)
                 else -> answerWithFailure(ctx)
             }
@@ -34,18 +33,14 @@ class RequestDispatcher : ChannelInboundHandlerAdapter() {
         super.channelRead(ctx, MovieQuery(id))
     }
 
-    private fun dispatchSeriesQuery(ctx: ChannelHandlerContext?, decoder: QueryStringDecoder) {
-        val id = extractId(decoder, Domain.Series, '/') ?: -1
-        super.channelRead(ctx, SeriesQuery(id))
-    }
-
     private fun dispatchActorQuery(ctx: ChannelHandlerContext?, decoder: QueryStringDecoder) {
         val id = extractId(decoder, Domain.Actors, '/') ?: -1
         super.channelRead(ctx, ActorQuery(id))
     }
 
     private fun answerWithFailure(ctx: ChannelHandlerContext?) {
-        ctx?.writeAndFlush(DefaultHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.BAD_REQUEST))
+        val response = DefaultHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.BAD_REQUEST)
+        ctx?.writeAndFlush(response, ctx.voidPromise())
     }
 
     private fun extractId(decoder: QueryStringDecoder, prefix: String, suffix: Char) : Int? {
