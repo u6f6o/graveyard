@@ -14,6 +14,7 @@ dependencies {
     compile(group = "io.netty", name = "netty-all", version = "4.1.19.Final")
     compile(group = "io.netty", name = "netty-transport-native-epoll", version = "4.1.19.Final")
     compile(group = "io.netty", name = "netty-transport-native-kqueue", version = "4.1.19.Final")
+    compile(group = "com.google.code.gson", name = "gson", version = "2.8.2")
 }
 
 repositories {

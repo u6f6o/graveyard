@@ -14,6 +14,7 @@ class ServerPipelineInitializer : ChannelInitializer<SocketChannel>() {
         pipeline.addLast(HttpServerCodec())
         pipeline.addLast(HttpContentCompressor())
         pipeline.addLast(HttpObjectAggregator(1048576))
+        pipeline.addLast("jsonEncoder", JsonEncoder())
         pipeline.addLast("dispatcher", RequestDispatcher())
         pipeline.addLast("movieHandler", MovieQueryHandler())
         pipeline.addLast("actorHandler", ActorQueryHandler())
